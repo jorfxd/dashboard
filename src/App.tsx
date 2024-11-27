@@ -14,67 +14,99 @@ interface Indicator {
     title?: String;
     subtitle?: String;
     value?: String;
-}
+  }
 
 function App() {
+    {/* Variable de estado y función de actualización */}
     let [indicators, setIndicators] = useState<Indicator[]>([])
-    {/* Hook: useEffect */ }
-    useEffect(() => {
+    let [owm, setOWM] = useState(localStorage.getItem("openWeatherMap"))
+    {/* Hook: useEffect */}
+    useEffect( ()=>{
+        let request = async () => { 
+             {/* Referencia a las claves del LocalStorage: openWeatherMap y expiringTime */}
+             let savedTextXML = localStorage.getItem("openWeatherMap") || "";
+             let expiringTime = localStorage.getItem("expiringTime");
+             {/* Obtenga la estampa de tiempo actual */}
+             let nowTime = (new Date()).getTime();
+              {/* Verifique si es que no existe la clave expiringTime o si la estampa de tiempo actual supera el tiempo de expiración */}
+             if(expiringTime === null || nowTime > parseInt(expiringTime)) {
+             {/* Request */}
+             let API_KEY = "924af3ed3b74bc061bf036864ed364e6";
+             let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Guayaquil&mode=xml&appid=${API_KEY}`)
+             let savedTextXML = await response.text();
 
-        let request = async () => {
-            {/* Request */ }
-            let API_KEY = "OPENWEATHERMAP' API KEY"
-            let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Guayaquil&mode=xml&appid=${API_KEY}`)
-            let savedTextXML = await response.text();
-            {/* XML Parser */ }
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(savedTextXML, "application/xml");
-            {/* Arreglo para agregar los resultados */ }
+             {/* Tiempo de expiración */}
+             let hours = 0.01
+             let delay = hours * 3600000
+             let expiringTime = nowTime + delay
 
-            let dataToIndicators: Indicator[] = new Array<Indicator>();
 
-            {/* 
-                 Análisis, extracción y almacenamiento del contenido del XML 
-                 en el arreglo de resultados
-             */}
+             {/* En el LocalStorage, almacene el texto en la clave openWeatherMap, estampa actual y estampa de tiempo de expiración */}
+             localStorage.setItem("openWeatherMap", savedTextXML)
+             localStorage.setItem("expiringTime", expiringTime.toString())
+             localStorage.setItem("nowTime", nowTime.toString())
 
-            let name = xml.getElementsByTagName("name")[0].innerHTML || ""
-            dataToIndicators.push({ "title": "Location", "subtitle": "City", "value": name })
+             {/* DateTime */}
+             localStorage.setItem("expiringDateTime", new Date(expiringTime).toString())
+             localStorage.setItem("nowDateTime", new Date(nowTime).toString())
 
-            let location = xml.getElementsByTagName("location")[1]
+             {/* Modificación de la variable de estado mediante la función de actualización */ }
+             setOWM( savedTextXML )
+            }
+            {/* Valide el procesamiento con el valor de savedTextXML */}
+            if( savedTextXML ) {
+             {/* XML Parser */}
+             const parser = new DOMParser();
+             const xml = parser.parseFromString(savedTextXML, "application/xml");
+              {/* Arreglo para agregar los resultados */}
 
-            let latitude = location.getAttribute("latitude") || ""
-            dataToIndicators.push({ "title": "Location", "subtitle": "Latitude", "value": latitude })
+              let dataToIndicators : Indicator[] = new Array<Indicator>();
 
-            let longitude = location.getAttribute("longitude") || ""
-            dataToIndicators.push({ "title": "Location", "subtitle": "Longitude", "value": longitude })
+              {/* 
+                  Análisis, extracción y almacenamiento del contenido del XML 
+                  en el arreglo de resultados
+              */}
+ 
+              let name = xml.getElementsByTagName("name")[0].innerHTML || ""
+              dataToIndicators.push({"title":"Location", "subtitle": "City", "value": name})
+ 
+              let location = xml.getElementsByTagName("location")[1]
+ 
+              let latitude = location.getAttribute("latitude") || ""
+              dataToIndicators.push({ "title": "Location", "subtitle": "Latitude", "value": latitude })
+ 
+              let longitude = location.getAttribute("longitude") || ""
+              dataToIndicators.push({ "title": "Location", "subtitle": "Longitude", "value": longitude })
+ 
+              let altitude = location.getAttribute("altitude") || ""
+              dataToIndicators.push({ "title": "Location", "subtitle": "Altitude", "value": altitude })
+ 
+              // console.log( dataToIndicators )
 
-            let altitude = location.getAttribute("altitude") || ""
-            dataToIndicators.push({ "title": "Location", "subtitle": "Altitude", "value": altitude })
-
-            //console.log( dataToIndicators )
-            {/* Modificación de la variable de estado mediante la función de actualización */ }
-            setIndicators(dataToIndicators)
+             {/* Modificación de la variable de estado mediante la función de actualización */}
+             setIndicators( dataToIndicators )
+              }
         }
 
-        request();
-
-    }, [])
+         request();
+    }, [owm] )
+    
     let renderIndicators = () => {
 
         return indicators
-            .map(
-                (indicator, idx) => (
-                    <Grid key={idx} size={{ xs: 12, xl: 3 }}>
-                        <IndicatorWeather
-                            title={indicator["title"]}
-                            subtitle={indicator["subtitle"]}
-                            value={indicator["value"]} />
-                    </Grid>
+                .map(
+                    (indicator, idx) => (
+                        <Grid key={idx} size={{ xs: 12, xl: 3 }}>
+                            <IndicatorWeather 
+                                title={indicator["title"]} 
+                                subtitle={indicator["subtitle"]} 
+                                value={indicator["value"]} />
+                        </Grid>
+                    )
                 )
-            )
-
+                   
     }
+
     {/* JSX */ }
     return (
         <Grid container spacing={5}>
@@ -93,6 +125,7 @@ function App() {
             <Grid size={{ xs: 12, xl: 3 }}><IndicatorWeather />
                 <IndicatorWeather title={'Indicator 4'} subtitle={'Unidad 4'} value={"3.21"} />
             </Grid>*/}
+            
             {renderIndicators()}
 
             {/* Tabla */}
