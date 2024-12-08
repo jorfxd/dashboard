@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,13 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 // Interfaz para los elementos del arreglo
-export interface Item {
-  dateStart: string;
-  dateEnd: string;
-  precipitation: number;
-  humidity: number;
-  clouds: number;
-}
+import Item from '../interface/Item';
+
 
 // Interfaz para los props
 interface MyProp {

@@ -15,7 +15,7 @@ import FormControl from '@mui/material/FormControl';
 
 export default function ControlWeather() {
     {/* Variable de estado y función de actualización */ }
-    let [selected, setSelected] = useState(-1)
+    let [, setSelected] = useState(-1)
 
     {/* Constante de referencia a un elemento HTML */ }
     const descriptionRef = useRef<HTMLDivElement>(null);
