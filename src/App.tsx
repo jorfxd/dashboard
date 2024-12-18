@@ -1,4 +1,5 @@
 import './App.css';
+import Navbar from './components/Navbar';
 import Item from './interface/Item';
 import LineChartWeather from './components/LineChartWeather';
 import TableWeather from './components/TableWeather';
@@ -6,6 +7,7 @@ import ControlWeather from './components/ControlWeather';
 import IndicatorWeather from './components/IndicatorWeather';
 // Grid version 2
 import Grid from '@mui/material/Grid2';
+import { Box } from '@mui/material'; 
 // Hooks
 import { useEffect, useState } from 'react';
 
@@ -124,7 +126,23 @@ function App() {
 
     // JSX
     return (
+        <>
+        <Navbar />
+        {/* Título y descripción */}
+        <Grid item xs={12}>
+            
+                        <h1>Dashboard meteorologico</h1>
+                        <p> Bienvenido a tu panel de control del clima. Aquí puedes ver información detallada sobre las
+                            condiciones meteorológicas actuales y futuras de la ciudad que gustes dentro de Ecuador.
+                        </p>
+                
+            </Grid>
+
         <Grid container spacing={5}>
+            
+
+            
+
             {/* Indicadores */}
             {renderIndicators()}
 
@@ -146,6 +164,7 @@ function App() {
                 <LineChartWeather />
             </Grid>
         </Grid>
+        </>
     );
 }
 
