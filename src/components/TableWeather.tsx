@@ -27,16 +27,16 @@ export default function TableWeather(props: MyProp) {
   }, [props.itemsIn]);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="table-weather-container">
       <Table sx={{ minWidth: 650 }} aria-label="weather table">
         {/* Encabezados de la tabla */}
         <TableHead>
           <TableRow>
-            <TableCell>Hora de inicio</TableCell>
-            <TableCell align="right">Hora de fin</TableCell>
-            <TableCell align="right">Precipitación</TableCell>
-            <TableCell align="right">Humedad</TableCell>
-            <TableCell align="right">Nubosidad</TableCell>
+            <TableCell sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Hora de inicio</TableCell>
+            <TableCell sx={{ fontSize: '1.5rem', fontWeight: 'bold' }} align="right">Hora de fin</TableCell>
+            <TableCell sx={{ fontSize: '1.5rem', fontWeight: 'bold' }} align="right">Precipitación</TableCell>
+            <TableCell sx={{ fontSize: '1.5rem', fontWeight: 'bold' }} align="right">Humedad</TableCell>
+            <TableCell sx={{ fontSize: '1.5rem', fontWeight: 'bold' }} align="right">Nubosidad</TableCell>
           </TableRow>
         </TableHead>
 
@@ -50,10 +50,11 @@ export default function TableWeather(props: MyProp) {
               <TableCell component="th" scope="row">
                 {row.dateStart}
               </TableCell>
-              <TableCell align="right">{row.dateEnd}</TableCell>
-              <TableCell align="right">{row.precipitation}</TableCell>
-              <TableCell align="right">{row.humidity}</TableCell>
-              <TableCell align="right">{row.clouds}</TableCell>
+              <TableCell sx={{ fontSize: '1.2rem' }}>{row.dateStart}</TableCell>
+              <TableCell sx={{ fontSize: '1.2rem' }} align="right">{row.dateEnd}</TableCell>
+              <TableCell sx={{ fontSize: '1.2rem' }} align="right">{row.precipitation}</TableCell>
+              <TableCell sx={{ fontSize: '1.2rem' }} align="right">{row.humidity}</TableCell>
+              <TableCell sx={{ fontSize: '1.2rem' }} align="right">{row.clouds}</TableCell>
             </TableRow>
           ))}
         </TableBody>

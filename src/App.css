@@ -1,35 +1,35 @@
 #root {
-  width: 100%;              /* Ocupa todo el ancho disponible */
-  margin: 0 auto;           /* Centra el contenido en pantallas más grandes */
-  padding: 2rem;            /* Espaciado interno en todo el contenedor */
-  text-align: center;       /* Centra el texto de manera predeterminada */
-  box-sizing: border-box;   /* Asegura que el padding no sume al tamaño total */
+  width: 100%;             
+  margin: 0 auto;           
+  padding: 2rem;            
+  text-align: center;       
+  box-sizing: border-box;   
 }
 
 .card {
-  padding: 2em;             /* Relleno dentro de la tarjeta */
-  margin-bottom: 2em;       /* Espacio entre las tarjetas */
-  background-color: #f4f4f9; /* Color de fondo suave para las tarjetas */
-  border-radius: 8px;       /* Bordes redondeados */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  padding: 2em;             
+  margin-bottom: 2em;       
+  background-color: #f4f4f9; 
+  border-radius: 8px;       
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .section {
-  margin-bottom: 3rem;      /* Separación entre las secciones */
-  padding: 2rem;            /* Relleno dentro de cada sección */
-  background-color: #f9f9f9; /* Fondo claro para diferenciar las secciones */
-  border-radius: 8px;       /* Bordes redondeados para las secciones */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+  margin-bottom: 3rem;     
+  padding: 2rem;          
+  background-color: #f9f9f9;
+  border-radius: 8px;     
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
 }
 
 .section h1 {
-  font-size: 2.5rem;         /* Títulos más grandes */
-  margin-bottom: 1rem;       /* Separación debajo del título */
+  font-size: 2.5rem;        
+  margin-bottom: 1rem;       
 }
 
 .section p {
-  font-size: 1rem;           /* Tamaño de fuente más pequeño para los párrafos */
-  color: #555;               /* Color de texto gris oscuro */
+  font-size: 1rem;          
+  color: #555;               
 }
 
 /* Hacer que el logo gire */
@@ -66,3 +66,107 @@
   color: #888;
 }
 
+/*Parte del contenido de la pagina*/
+
+/* Espaciado y estilos generales para las secciones */
+.section {
+  margin-bottom: 3rem; /* Espaciado entre las secciones */
+  padding: 2rem;       /* Relleno interno */
+  border-radius: 8px;  /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Sombra ligera */
+}
+
+/* Colores específicos para cada sección */
+#inicio {
+  background-color: #002a68;    /* Fondo azul oscuro */
+  margin-top: 5rem;            /* Separación desde la barra de navegación */
+  padding: 3rem 2rem;          /* Espaciado interno adicional */
+  border-radius: 8px;          /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+#inicio h1 {
+  font-size: 3.5rem;           /* Título más grande */
+  font-family: sans-serif; 
+  font-weight: bold;           /* Hace el título más grueso */
+  text-align: center;          /* Centra el título */
+  color: #ffffff;              /* Texto blanco */
+  margin-bottom: 2rem;         /* Espaciado debajo del título */
+}
+
+#inicio-content {
+  display: flex;               /* Flexbox para organizar texto e imagen */
+  justify-content: space-between; /* Espacio entre el texto y la imagen */
+  align-items: center;         /* Centra verticalmente los elementos */
+}
+
+#inicio-content p {
+  color: white;
+  font-size: 1.2rem;         
+  color: #dddddd;             /* Texto gris claro */
+  text-align: left;           /* Alinea el texto a la izquierda */
+}
+
+#inicio img {
+  width: 250px;                /* Ancho máximo para la imagen */
+  height: auto;                /* Mantiene proporción */
+  border-radius: 8px;          /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+  margin-left: 2rem;           /* Espaciado entre el texto y la imagen */
+}
+
+/*------------------------------------------------------------*/
+
+#detalles {
+  background-color: #fbe9e7; /* Naranja claro */
+}
+
+
+/*------------------------------------------------------------*/
+#historial {
+  background-color: #e8f5e9; /* Verde claro */
+}
+/* Para el contenedor */
+.table-weather-container {
+  margin: 2rem auto; /* Espaciado externo */
+  max-width: 90%; /* Tamaño máximo */
+}
+
+/* Para la tabla */
+.table-weather {
+  font-size: 2rem; /* Tamaño de fuente más grande */
+  border-collapse: collapse;
+}
+
+.table-weather th, .table-weather td {
+  font-size: 2rem !important;
+  padding: 0.8rem;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.table-weather th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+/*------------------------------------------------------------*/
+#grafico {
+  background-color: #ede7f6; /* Morado claro */
+}
+
+/*------------------------------------------------------------*/
+/* Estilos adicionales para títulos */
+.section h1 {
+  font-size: 2.5rem;
+  color: #0B4175; /* Color principal */
+  margin-bottom: 1rem;
+}
+
+/* Texto dentro de las secciones */
+.section p {
+  font-size: 1rem;
+  color: #555; /* Texto gris oscuro */
+}
+
+/*Termina aqui*/

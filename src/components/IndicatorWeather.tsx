@@ -19,7 +19,7 @@ export default function IndicatorWeather(config: Indicator) {
           >
             <Typography component="h2" variant="h6" 
                         color="primary" gutterBottom>
-                {config.title} 
+                {config.subtitle} 
             </Typography>
             <Typography component="p" variant="h4">
                 {config.value}

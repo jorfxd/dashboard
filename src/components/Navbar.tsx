@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
-import CloudIcon from '@mui/icons-material/Cloud'; // Icono similar a tu imagen
+import CloudIcon from '@mui/icons-material/Cloud';
 
 const Navbar: React.FC = () => {
     return (
@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
                 <Box display="flex" alignItems="center" sx={{ flexGrow: 1 }}>
                     <CloudIcon style={{ color: 'white', marginRight: '8px' }} />
                     <Typography variant="h6" style={{ fontWeight: 'bold' }}>
-                        Ecuador meteorologico
+                        Dashboard meteorologico
                     </Typography>
                 </Box>
 
@@ -21,11 +21,11 @@ const Navbar: React.FC = () => {
                             color: '#FFEB3B',
                         }
                     }}
-                    href="#inicio" // Usamos href con el ID correspondiente
+                    href="#inicio" 
                 >
                     Inicio
                 </Button>
-                
+
                 <Button
                     color="inherit"
                     sx={{
@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
                             color: '#FFEB3B',
                         }
                     }}
-                    href="#detalles" // Usamos href con el ID correspondiente
+                    href="#detalles"
                 >
                     Detalles
                 </Button>
@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
                             color: '#FFEB3B',
                         }
                     }}
-                    href="#historial" // Usamos href con el ID correspondiente
+                    href="#historial" 
                 >
                     Historial
                 </Button>
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
                             color: '#FFEB3B',
                         }
                     }}
-                    href="#grafico" // Usamos href con el ID correspondiente
+                    href="#grafico"
                 >
                     Gráfico
                 </Button>

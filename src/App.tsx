@@ -7,7 +7,7 @@ import ControlWeather from './components/ControlWeather';
 import IndicatorWeather from './components/IndicatorWeather';
 // Grid version 2
 import Grid from '@mui/material/Grid2';
-import { Box } from '@mui/material'; 
+import { Box } from '@mui/material';
 // Hooks
 import { useEffect, useState } from 'react';
 
@@ -79,7 +79,7 @@ function App() {
                 const timeElements = xml.getElementsByTagName("time");
 
                 // Iterar sobre los primeros 6 elementos
-                for (let i = 0; i < Math.min(timeElements.length, 6); i++) {
+                for (let i = 0; i < Math.min(timeElements.length, 8); i++) {
                     const timeElement = timeElements[i];
 
                     // Obtener los valores 'from' y 'to'
@@ -100,8 +100,9 @@ function App() {
                         dateStart: timeFrom,
                         dateEnd: timeTo,
                         precipitation: probability,
-                        humidity,
-                        clouds,
+                        humidity: `${humidity}%`, // Agregar el símbolo % a la humedad
+                        clouds: `${clouds}%`,
+
                     });
                 }
 
@@ -127,43 +128,50 @@ function App() {
     // JSX
     return (
         <>
-        <Navbar />
-        {/* Título y descripción */}
-        <Grid item xs={12}>
-            
-                        <h1>Dashboard meteorologico</h1>
-                        <p> Bienvenido a tu panel de control del clima. Aquí puedes ver información detallada sobre las
-                            condiciones meteorológicas actuales y futuras de la ciudad que gustes dentro de Ecuador.
+            <Navbar />
+            {/* Dashboard meteorológico */}
+            <section id="inicio">
+                <h1>Dashboard meteorológico</h1>
+                <div id="inicio-content">
+                    <div>
+
+                        <p>Bienvenido, Aqui podras encontrar todas las ultimas novedades sobre el clima
+                            del país. Tambien podras encontrar una historial del clima con especificaciones
+                            de variables y una grafica la cual cambia con variables climaticas.
                         </p>
-                
-            </Grid>
+                    </div>
+                    <img src="https://pbs.twimg.com/ext_tw_video_thumb/863499045414641664/pu/img/hBJzXujWUgZhIT49.jpg"
+                        alt="foto turistica de gye" />
+                </div>
 
-        <Grid container spacing={5}>
-            
+            </section>
 
-            
+            {/* Sección de cartas */}
+            <section id="detalles">
+                <h1>Detalles sobre Guayaquil</h1>
+                <Grid container spacing={5}>{renderIndicators()}</Grid>
+            </section>
 
-            {/* Indicadores */}
-            {renderIndicators()}
+            {/* Sección de tabla */}
+            <section id="historial">
+                <h1>Historial del clima</h1>
+                <Grid size={{ xs: 12, xl: 8 }}>
+                    <TableWeather itemsIn={items} />
+                </Grid>
+            </section>
 
-            {/* Tabla */}
-            <Grid size={{ xs: 12, xl: 8 }}>
-                <Grid container spacing={2}>
+            {/* Variables meteorológicas y gráfica */}
+            <section id="grafico">
+                <h1>Grafico de variables climaticas</h1>
+                <Grid container spacing={5}>
                     <Grid size={{ xs: 12, xl: 3 }}>
                         <ControlWeather />
                     </Grid>
                     <Grid size={{ xs: 12, xl: 9 }}>
-                        {/* Pasamos items a TableWeather */}
-                        <TableWeather itemsIn={items} />
+                        <LineChartWeather />
                     </Grid>
                 </Grid>
-            </Grid>
-
-            {/* Gráfico */}
-            <Grid size={{ xs: 12, xl: 4 }}>
-                <LineChartWeather />
-            </Grid>
-        </Grid>
+            </section>
         </>
     );
 }
